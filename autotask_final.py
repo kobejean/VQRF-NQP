@@ -27,7 +27,7 @@ parser.add_argument("--codebook_size",  type=int,  default=4096,
 parser.add_argument("--dump_images",  action='store_true', default=False,
         help='fully vector quantize the full model')
 
-parser.add_argument('--dataset', type=str, default='syn', choices=['syn', 'llff', 'tnt', 'nsvf'])
+parser.add_argument('--dataset', type=str, default='syn', choices=['sparf', 'syn', 'llff', 'tnt', 'nsvf'])
 args = parser.parse_args()
 
 PSNR_FILE_NAME = 'test_psnr.txt'
@@ -78,6 +78,12 @@ def process_main(device, queue):
 
 
 DatasetSetting={
+    "sparf": {
+        "data": "/home/ccl/Datasets/NeRF/SPARF",
+        "cfg": f"./configs/batch_test/{args.configname}.py",
+        "basedir":f"./logs/{args.configname}",
+        "scene_list":['chair', 'drums', 'ficus', 'hotdog', 'lego', 'materials', 'mic', 'ship']
+    },
     "syn": {
         "data": "./data/nerf_synthetic",
         "cfg": f"./configs/batch_test/{args.configname}.py",
